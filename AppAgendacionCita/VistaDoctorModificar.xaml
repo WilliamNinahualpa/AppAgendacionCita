@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.VistaDoctorModificar">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="txtPrimerNombre"></Entry>
+            <Entry x:Name="txtSegundoNombre"></Entry>
+            <Entry x:Name="txtPrimerApellido"></Entry>
+            <Entry x:Name="txtSegundoApellido"></Entry>
+            <Entry x:Name="txtCedula"></Entry>
+            <Entry x:Name="txtCorreo"></Entry>
+            <Entry x:Name="txtTelefono"></Entry>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.MainPage"
+              BackgroundImage="fondovertical.jpg">
+
+    <StackLayout>
+        
+        <Label Text="Login" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" TextColor="White" Text="Rol" FontSize="24"></Label>
+             <Picker Grid.Row="0" Grid.Column="1" TextColor="White" x:Name="pickerrol" TitleColor="White" Title="Seleccionar rol" SelectedIndexChanged="pickerrol_SelectedIndexChanged"></Picker>
+            <Label Grid.Row="1" Grid.Column="0" TextColor="White" Text="Usuario:" FontSize="24"></Label>
+            <Entry Grid.Row="1" Grid.Column="1"  TextColor="White" x:Name="txtUsuario" Placeholder="Ingresar usuario" PlaceholderColor="White"></Entry>
+            <Label Grid.Row="2" Grid.Column="0" TextColor="White" Text="Clave:" FontSize="24"></Label>
+            <Entry Grid.Row="2" Grid.Column="1"   TextColor="White" x:Name="txtClave" Placeholder="Ingresar clave" IsPassword="True" PlaceholderColor="White"></Entry>
+            <Button  Grid.Row="3" Grid.Column="0" x:Name="btnIngresar" Text="Ingresar" Clicked="btnIngresar_Clicked"></Button>
+            <Button  Grid.Row="3" Grid.Column="1" x:Name="btnRegistrarse" Text="Registrarse" Clicked="btnRegistrarse_Clicked"></Button>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

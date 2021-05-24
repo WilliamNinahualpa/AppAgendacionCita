@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.Paciente">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lblrol" ></Label>
+            <Label x:Name="lblusuario" ></Label>
+            <Entry Placeholder="ID" x:Name="txtId"></Entry>
+            <Entry Placeholder="Primer Nombre" x:Name="txtPrimerNombre"></Entry>
+            <Entry Placeholder="Segundo Nombre" x:Name="txtSegundoNombre"></Entry>
+            <Entry Placeholder="Primer Apellido" x:Name="txtPrimerApellido"></Entry>
+            <Entry Placeholder="SegundoApellido" x:Name="txtSegundoApellido"></Entry>
+            <Entry Placeholder="Cedula" x:Name="txtCedula"></Entry>
+            <Entry Placeholder="Correo" x:Name="txtCorreo"></Entry>
+            <Entry Placeholder="Telefono" x:Name="txtTelefono"></Entry>
+            <Button Text="Modificar" x:Name="btnModificarPaciente" Clicked="btnModificarPaciente_Clicked"></Button>
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

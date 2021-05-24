@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.VistaClinica">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="MyListView" ItemSelected="MyListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label x:Name="lblcodigo" Text="{Binding cli_nombre}"></Label>
+                                <Label x:Name="lblnombre" Text="{Binding cli_direccion}"></Label>
+                                <Label x:Name="lblapellido" Text="{Binding cli_correo}"></Label>
+                                <Label x:Name="lbledad" Text="{Binding cli_telefono}"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Ingresar" x:Name="btnIngresar" Clicked="btnIngresar_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

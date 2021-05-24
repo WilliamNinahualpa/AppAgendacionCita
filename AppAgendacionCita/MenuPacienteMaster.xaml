@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.MenuPacienteMaster"
+             Title="Master"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lblrol" ></Label>
+            <Label x:Name="lblusuario"></Label>
+            <Button Text="Paciente" x:Name="btnPaciente" BackgroundColor="White" Clicked="btnPaciente_Clicked"></Button>
+            <Button Text="Citas" x:Name="btnCita" BackgroundColor="White" Clicked="btnCita_Clicked"></Button>
+            <Button Text="Doctor" x:Name="btnDoctor" BackgroundColor="White" Clicked="btnDoctor_Clicked"></Button>
+            <Button Text="Clínica" x:Name="btnVistaClinica" BackgroundColor="White" Clicked="btnVistaClinica_Clicked"></Button>
+            <Button Text="Area" x:Name="btnVistaArea" BackgroundColor="White" Clicked="btnVistaArea_Clicked"></Button>
+            <Button Text="Usuario" x:Name="btnVistaUsuario"  BackgroundColor="White" Clicked="btnVistaUsuario_Clicked"></Button>
+            <Button Text="Doctor" x:Name="btnVistaDoctor"  BackgroundColor="White" Clicked="btnVistaDoctor_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

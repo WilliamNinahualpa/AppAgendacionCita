@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.VistaClinicaModificar">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Codigo" x:Name="txtCodigo"></Entry>
+            <Entry Placeholder="Nombre de la clínica" x:Name="txtNombre"></Entry>
+            <Entry Placeholder="Dirección de la clínica" x:Name="txtDireccion"></Entry>
+            <Entry Placeholder="Correo de la clínica" x:Name="txtCorreo"></Entry>
+            <Entry Placeholder="Telefono de la clínica" x:Name="txtTelefono"></Entry>
+            <Entry Placeholder="Página web de la clínica" x:Name="txtPagina"></Entry>
+            <Entry Placeholder="Representante de la clínica" x:Name="txtRepresentante"></Entry>
+            
+
+            <Button Text="Modificar" x:Name="btnModificar" Clicked="btnModificar_Clicked"></Button>
+            <Button Text="Eliminar" x:Name="btnEliminar" Clicked="btnEliminar_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

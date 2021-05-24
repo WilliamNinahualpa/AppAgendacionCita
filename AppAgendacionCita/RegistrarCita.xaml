@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.RegistrarCita">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lblUsuario"></Label>
+            <Label x:Name="lblRol"></Label>
+            <Entry x:Name="txtCodigo"></Entry>
+            <Entry x:Name="txtNombre"></Entry>
+            <Picker x:Name="pickerClinica" SelectedIndexChanged="pickerClinica_SelectedIndexChanged"></Picker>
+            <Picker x:Name="pickerArea" SelectedIndexChanged="pickerArea_SelectedIndexChanged"></Picker>
+            <Picker x:Name="pickerDoctor" SelectedIndexChanged="pickerDoctor_SelectedIndexChanged"></Picker>
+            
+            <DatePicker x:Name="dpDia" DateSelected="dpDia_DateSelected"></DatePicker>
+            <Picker x:Name="pickerHora" ></Picker>
+
+            <Button Text="Boton" x:Name="btnHorario" Clicked="btnHorario_Clicked"></Button>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
