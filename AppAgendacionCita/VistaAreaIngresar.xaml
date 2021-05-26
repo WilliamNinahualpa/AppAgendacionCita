@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.VistaAreaIngresar"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lblrol"></Label>
+            <Label x:Name="lblusuario"></Label>
+            <Picker x:Name="pickerClinica" Title="Seleccionar Clinica"></Picker>
+            <Entry x:Name="txtNombre" Placeholder="Ingrese nombre del area"></Entry>
+            <Button x:Name="btnIngresar" Text="Ingresar" Clicked="btnIngresar_Clicked"></Button>
+            <Button x:Name="btnRegresar" Text="Regresar" Clicked="btnRegresar_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

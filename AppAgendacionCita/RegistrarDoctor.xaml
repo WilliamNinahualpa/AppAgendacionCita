@@ -4,9 +4,18 @@
              x:Class="AppAgendacionCita.RegistrarDoctor">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="lblrol"></Label>
+            <Label x:Name="lblusuario"></Label>
+            
+            <Entry x:Name="txtiddoctor"></Entry>
+            <Entry x:Name="txtPrimerNombre" Placeholder="Ingrese primer nombre"></Entry>
+            <Entry x:Name="txtSegundoNombre" Placeholder="Ingrese segundo nombre"></Entry>
+            <Entry x:Name="txtPrimerApellido" Placeholder="Ingrese primer apellido"></Entry>
+            <Entry x:Name="txtSegundoApellido" Placeholder="Ingrese segundo apellido"></Entry>
+            <Entry x:Name="txtCedula" Placeholder="Ingrese Cédula"></Entry>
+            <Entry x:Name="txtCorreo" Placeholder="Ingrese correo"></Entry>
+            <Entry x:Name="txtTelefono" Placeholder="Ingreso telefono"></Entry>
+            <Button x:Name="btnModificar" Text="Modificar" Clicked="btnModificar_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

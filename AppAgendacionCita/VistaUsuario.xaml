@@ -4,6 +4,9 @@
              x:Class="AppAgendacionCita.VistaUsuario">
     <ContentPage.Content>
         <StackLayout>
+            <Label x:Name="lblrol"></Label>
+            <Label x:Name="lblusuario"></Label>
+            <Label Text="Usuario" FontSize="50" HorizontalOptions="Center"></Label>
             <ListView x:Name="MyListView" ItemSelected="MyListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -17,7 +20,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+            <Button x:Name="btnIngresar" Text="Ingresar" Clicked="btnIngresar_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

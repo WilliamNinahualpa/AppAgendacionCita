@@ -17,10 +17,14 @@ namespace AppAgendacionCita
     {
         private readonly HttpClient client = new HttpClient();
         private ObservableCollection<AppAgendacionCita.WS.DatosClinica> _post;
-        public VistaClinica()
+        public VistaClinica(string rol, string usuario)
         {
             InitializeComponent();
             getClinica();
+            lblrol.Text = rol;
+            lblusuario.Text = usuario;
+            lblrol.IsVisible = false;
+            lblusuario.IsVisible = false;
         }
 
         private async void getClinica()
@@ -34,9 +38,8 @@ namespace AppAgendacionCita
                 MyListView.ItemsSource = _post;
             }
             catch (Exception ex)
-            {
-                await DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+            {                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
@@ -46,12 +49,12 @@ namespace AppAgendacionCita
             var item = Obj.cli_id.ToString();            
             int id = Convert.ToInt32(item);
 
-            await Navigation.PushAsync(new VistaClinicaModificar(id));
+           await Navigation.PushAsync(new VistaClinicaModificar(id, lblrol.Text, lblusuario.Text));
         }
 
         private async void btnIngresar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new VistaClinicaIngresar());
+            await Navigation.PushAsync(new VistaClinicaIngresar(lblrol.Text, lblusuario.Text));
         }
     }
 }

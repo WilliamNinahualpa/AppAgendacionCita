@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppAgendacionCita.VistaClinicaModificar">
+             x:Class="AppAgendacionCita.VistaClinicaModificar"
+               NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
+
+            <Label x:Name="lblrol"></Label>
+            <Label x:Name="lblusuario"></Label>
+
             <Entry Placeholder="Codigo" x:Name="txtCodigo"></Entry>
             <Entry Placeholder="Nombre de la clínica" x:Name="txtNombre"></Entry>
             <Entry Placeholder="Dirección de la clínica" x:Name="txtDireccion"></Entry>
@@ -15,6 +20,7 @@
 
             <Button Text="Modificar" x:Name="btnModificar" Clicked="btnModificar_Clicked"></Button>
             <Button Text="Eliminar" x:Name="btnEliminar" Clicked="btnEliminar_Clicked"></Button>
+            <Button Text="Regresar" x:Name="btnRegresar" Clicked="btnRegresar_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

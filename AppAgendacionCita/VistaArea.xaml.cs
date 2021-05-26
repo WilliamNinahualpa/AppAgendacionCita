@@ -17,10 +17,14 @@ namespace AppAgendacionCita
     {
         private readonly HttpClient client = new HttpClient();
         private ObservableCollection<AppAgendacionCita.WS.DatosArea> _post;
-        public VistaArea()
+        public VistaArea(string rol, string usuario)
         {
             InitializeComponent();
             getArea();
+            lblrol.Text = rol;
+            lblusuario.Text = usuario;
+            lblrol.IsVisible = false;
+            lblusuario.IsVisible = false;
         }
 
         private async void getArea()
@@ -36,8 +40,8 @@ namespace AppAgendacionCita
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
@@ -47,7 +51,12 @@ namespace AppAgendacionCita
             var item = Obj.are_id.ToString();
             int id = Convert.ToInt32(item);
 
-            await Navigation.PushAsync(new VistaAreaModificar(id));
+            await Navigation.PushAsync(new VistaAreaModificar(id, lblrol.Text, lblusuario.Text));
+        }
+
+        private async void btnArea_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new VistaAreaIngresar(lblrol.Text, lblusuario.Text));
         }
     }
 }

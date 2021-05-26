@@ -17,12 +17,16 @@ namespace AppAgendacionCita
     public partial class VistaClinicaModificar : ContentPage
     {
         private readonly HttpClient client = new HttpClient();
-        private ObservableCollection<AppAgendacionCita.WS.DatosClinica> _post;
-        public VistaClinicaModificar(int id)
+        
+        public VistaClinicaModificar(int id, string rol, string usuario)
         {
             InitializeComponent();
             getClinica(id);
-           
+            txtCodigo.IsVisible = false;
+            lblrol.Text = rol;
+            lblusuario.Text = usuario;
+            lblrol.IsVisible = false;
+            lblusuario.IsVisible = false;
         }
 
         private async void getClinica(int id)
@@ -33,7 +37,8 @@ namespace AppAgendacionCita
                 var content = await client.GetStringAsync(Url);
                 if (content.Equals("false"))
                 {
-                    await DisplayAlert("Alerta", "Datos incorrectos", "ok");
+                    var mensaje = "Datos incorrectos";
+                    DependencyService.Get<Mensaje>().LongAlert(mensaje);
                 }
                 else
                 {
@@ -52,8 +57,8 @@ namespace AppAgendacionCita
             }
             catch (Exception ex)
             {
-                DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
@@ -67,19 +72,16 @@ namespace AppAgendacionCita
                 var parametro = new System.Collections.Specialized.NameValueCollection();
                 parametro.Add("codigo", "0");
 
-
                 cliente.UploadValues("http://192.168.100.66/moviles/RestClinica.php?cli_id=" + txtCodigo.Text + "", "DELETE", parametro);
+                
+                var mensaje = "Registro eliminado exitosamnte";
+                DependencyService.Get<Mensaje>().LongAlert(mensaje);
 
-
-                await DisplayAlert("Alerta", "Ingreso Exitoso", "Ok");
-                //var mensaje = "Registro eliminado exitosamnte";
-                //DependencyService.Get<Mensaje>().LongAlert(mensaje);
-
-                await Navigation.PushAsync(new MainPage());
+                await Navigation.PushAsync(new MenuCabeceraPaciente(lblrol.Text, lblusuario.Text, 1));
             }
             catch (Exception ex)
             {
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.Message);
+                DependencyService.Get<Mensaje>().ShortAlert(ex.Message);
             }
         }
 
@@ -91,25 +93,24 @@ namespace AppAgendacionCita
                 var parametro = new System.Collections.Specialized.NameValueCollection();
                 parametro.Add("codigo", txtCodigo.Text);
                
-
-
                 cliente.UploadValues("http://192.168.100.66/moviles/RestClinica.php?cli_id=" + txtCodigo.Text + "&cli_nombre=" + txtNombre.Text + "&cli_direccion=" + txtDireccion.Text + "&cli_correo=" + txtCorreo.Text + "&cli_telefono=" + txtTelefono.Text + "&cli_pagina_web=" + txtPagina.Text + "&cli_representante_legal=" + txtRepresentante.Text, "PUT", parametro);
-
-
-                await DisplayAlert("Alerta", "Ingreso Exitoso", "Ok");
-                //var mensaje = "Registro modificado exitosamnte";
-                //DependencyService.Get<Mensaje>().LongAlert(mensaje);
-
-                await Navigation.PushAsync(new MainPage());
-
+                
+                var mensaje = "Registro modificado exitosamnte";
+                DependencyService.Get<Mensaje>().LongAlert(mensaje);
+                
+                await Navigation.PushAsync(new MenuCabeceraPaciente(lblrol.Text, lblusuario.Text, 1));
 
             }
             catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "Error" );
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.Message);
+            {               
+                DependencyService.Get<Mensaje>().ShortAlert(ex.Message);
             }
 
+        }
+
+        private async void btnRegresar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MenuCabeceraPaciente(lblrol.Text, lblusuario.Text, 1));
         }
     }
 }

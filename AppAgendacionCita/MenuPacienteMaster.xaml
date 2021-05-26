@@ -8,13 +8,16 @@
         <StackLayout>
             <Label x:Name="lblrol" ></Label>
             <Label x:Name="lblusuario"></Label>
-            <Button Text="Paciente" x:Name="btnPaciente" BackgroundColor="White" Clicked="btnPaciente_Clicked"></Button>
-            <Button Text="Citas" x:Name="btnCita" BackgroundColor="White" Clicked="btnCita_Clicked"></Button>
-            <Button Text="Doctor" x:Name="btnDoctor" BackgroundColor="White" Clicked="btnDoctor_Clicked"></Button>
-            <Button Text="Clínica" x:Name="btnVistaClinica" BackgroundColor="White" Clicked="btnVistaClinica_Clicked"></Button>
-            <Button Text="Area" x:Name="btnVistaArea" BackgroundColor="White" Clicked="btnVistaArea_Clicked"></Button>
-            <Button Text="Usuario" x:Name="btnVistaUsuario"  BackgroundColor="White" Clicked="btnVistaUsuario_Clicked"></Button>
-            <Button Text="Doctor" x:Name="btnVistaDoctor"  BackgroundColor="White" Clicked="btnVistaDoctor_Clicked"></Button>
+            <Button Text="Paciente" x:Name="btnPaciente" BackgroundColor="White" Clicked="btnPaciente_Clicked" ImageSource="pacientep.jpg"></Button>
+            <Button Text="Agendar citas" x:Name="btnCita" BackgroundColor="White" Clicked="btnCita_Clicked" ImageSource="calendariop.jpg"></Button>
+            <Button Text="Doctor" x:Name="btnDoctor" BackgroundColor="White" Clicked="btnDoctor_Clicked" ImageSource="doctorp.jpg"></Button>
+            <Button Text="Usuario" x:Name="btnVistaUsuario"  BackgroundColor="White" Clicked="btnVistaUsuario_Clicked" ImageSource="usuariop.jpg"></Button>
+            <Button Text="Clínica" x:Name="btnVistaClinica" BackgroundColor="White" Clicked="btnVistaClinica_Clicked" ImageSource="clinicap.jpg"></Button>
+            <Button Text="Area" x:Name="btnVistaArea" BackgroundColor="White" Clicked="btnVistaArea_Clicked" ImageSource="areap.jpg"></Button>
+            <Button Text="Doctor" x:Name="btnVistaDoctor"  BackgroundColor="White" Clicked="btnVistaDoctor_Clicked" ImageSource="doctorp.jpg"></Button>
+            <Button Text="Ver citas" x:Name="btnVerCita" BackgroundColor="White" Clicked="btnVerCita_Clicked" ImageSource="calendariop.jpg"></Button>
+            <Button Text="Ver citas" x:Name="btnVerCitaDoctor" BackgroundColor="White" Clicked="btnVerCitaDoctor_Clicked" ImageSource="calendariop.jpg"></Button>
+            <Button Text="Cerrar sesión" x:Name="btnCerrar" BackgroundColor="White" Clicked="btnCerrar_Clicked" ImageSource="salirp.jpg"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

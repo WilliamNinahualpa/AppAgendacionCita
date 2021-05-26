@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,8 +25,15 @@ namespace AppAgendacionCita
             InitializeComponent();
             lblRol.Text = rol;
             lblUsuario.Text = usuario;
+            txtIdDoctor.IsVisible = false;
+            txtCodigo.IsVisible = false;
             getPaciente();
             clinica();
+            txtNombre1.IsVisible = false;
+            txtLatitud.IsVisible = false;
+            txtLongitud.IsVisible = false;
+            lblUsuario.IsVisible = false;
+            lblRol.IsVisible = false;
           
         }
 
@@ -39,7 +46,8 @@ namespace AppAgendacionCita
                 var content = await client.GetStringAsync("http://192.168.100.66/moviles/RestPaciente.php?usuario=" + lblUsuario.Text + "&rol=" + lblRol.Text + "");
                 if (content.Equals("false"))
                 {
-                    DisplayAlert("Alerta", "Datos incorrectos", "ok");
+                    var mensaje = "Datos incorrectos";
+                    DependencyService.Get<Mensaje>().LongAlert(mensaje);
                 }
                 else
                 {
@@ -53,8 +61,8 @@ namespace AppAgendacionCita
             }
             catch (Exception ex)
             {
-                DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
@@ -65,7 +73,8 @@ namespace AppAgendacionCita
                 var content = await client.GetStringAsync("http://192.168.100.66/moviles/RestClinica.php");
                 if (content.Equals("false"))
                 {
-                    DisplayAlert("Alerta", "Datos incorrectos", "ok");
+                    var mensaje = "Datos incorrectos";
+                    DependencyService.Get<Mensaje>().LongAlert(mensaje);
                 }
                 else
                 {
@@ -74,14 +83,14 @@ namespace AppAgendacionCita
                     {
 
                         pickerClinica.Items.Add(clinica1.cli_nombre);
-                        //pickerDoctor.Items.IndexOf(doctor1.doc_id);
+                      
                     }
                 }
             }
             catch (Exception ex)
             {
-                DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
@@ -95,8 +104,15 @@ namespace AppAgendacionCita
             var hora = pickerHora.SelectedItem;
             var fecha = dpDia.Date.ToString("yyyy-MM-dd");
             var paciente = txtCodigo.Text;
-            var doctor = pickerDoctor.SelectedItem;
-            
+            var doctor = pickerDoctor.SelectedItem.ToString();
+            //txtIdDoctor.Text = doctor;
+
+            var content = await client.GetStringAsync("http://192.168.100.66/moviles/RestDoctor.php?nombre=" + doctor + "");
+            doctors = JsonConvert.DeserializeObject<List<AppAgendacionCita.WS.DatosDoctor>>(content);
+            foreach (var doctor1 in doctors)
+            {
+                txtIdDoctor.Text = doctor1.doc_id;
+            }
             
 
             WebClient cliente = new WebClient();
@@ -105,27 +121,30 @@ namespace AppAgendacionCita
             parametros.Add("idclinica", "1");
             parametros.Add("idarea", "1");
             parametros.Add("idpaciente", txtCodigo.Text);
-            parametros.Add("iddoctor", "1");
+            parametros.Add("iddoctor", txtIdDoctor.Text);
             parametros.Add("fecha", fecha);
             parametros.Add("hora", hora.ToString());
 
             cliente.UploadValues("http://192.168.100.66/moviles/RestCita.php", "POST", parametros);
+
+            Vibration.Vibrate(TimeSpan.FromMilliseconds(300));
+
+
+            var mensaje = "Cita generada correctamente";
+            DependencyService.Get<Mensaje>().LongAlert(mensaje);
+
+            await Navigation.PushAsync(new VistaCitasUsuario(lblRol.Text, lblUsuario.Text));
             
-
-            await DisplayAlert("Alerta", "ingresado corectamente", "ok");
-
-            //DisplayAlert("Alerta", hora + fecha.ToString() + paciente + doctor, "ok");
-
-            //DisplayAlert("Error", v.ToString(), "ok");
         }
 
-        public async void pickerDoctor_SelectedIndexChanged(object sender, EventArgs e)
+        public void pickerDoctor_SelectedIndexChanged(object sender, EventArgs e)
         {
            
         }
 
         private async void pickerClinica_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pickerArea.Items.Clear();
             int position = pickerClinica.SelectedIndex;
             if (position > -1)
             {
@@ -135,21 +154,24 @@ namespace AppAgendacionCita
                     var content = await client.GetStringAsync("http://192.168.100.66/moviles/RestClinicaArea.php?clinica=" + d.ToString() + "");
                     if (content.Equals("false"))
                     {
-                        await DisplayAlert("Alerta", "Datos incorrectos", "ok");
+                        var mensaje = "Datos incorrectos";
+                        DependencyService.Get<Mensaje>().LongAlert(mensaje);
                     }
                     else
                     {
-                        area = JsonConvert.DeserializeObject<List<AppAgendacionCita.WS.DatosArea>>("[" + content + "]");
+                        area = JsonConvert.DeserializeObject<List<AppAgendacionCita.WS.DatosArea>>(content);
                         foreach (var area1 in area)
                         {
-                            pickerArea.Items.Add(area1.are_nombre);                            
+                            pickerArea.Items.Add(area1.are_nombre);
+
+                            
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    DisplayAlert("Error", "Error" + ex.Message, "ok");
-                    //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+                    
+                    DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
                 }
             }
            
@@ -157,6 +179,7 @@ namespace AppAgendacionCita
 
         private async void pickerArea_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pickerDoctor.Items.Clear();
             int position = pickerArea.SelectedIndex;
             if (position > -1)
             {
@@ -166,11 +189,12 @@ namespace AppAgendacionCita
                     var content = await client.GetStringAsync("http://192.168.100.66/moviles/RestAreaDoctor.php?doctor=" + d.ToString() + "");
                     if (content.Equals("false"))
                     {
-                        DisplayAlert("Alerta", "Datos incorrectos", "ok");
+                        var mensaje = "Datos incorrectos";
+                        DependencyService.Get<Mensaje>().LongAlert(mensaje);
                     }
                     else
                     {
-                        doctors = JsonConvert.DeserializeObject<List<AppAgendacionCita.WS.DatosDoctor>>("[" + content + "]");
+                        doctors = JsonConvert.DeserializeObject<List<AppAgendacionCita.WS.DatosDoctor>>(content);
                         foreach (var doctor1 in doctors)
                         {
 
@@ -181,10 +205,25 @@ namespace AppAgendacionCita
                 }
                 catch (Exception ex)
                 {
-                    DisplayAlert("Error", "Error" + ex.Message, "ok");
-                    //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+                    
+                    DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
                 }
             }
+        }
+
+
+
+        private async void btnAbrir_Clicked(object sender, EventArgs e)
+        {
+            if (!double.TryParse(txtLatitud.Text, out double lat))
+                return;
+            if (!double.TryParse(txtLongitud.Text, out double lng))
+                return;
+            await Map.OpenAsync(lat, lng, new MapLaunchOptions
+            {
+                Name = txtNombre1.Text,
+                NavigationMode = NavigationMode.None
+            });
         }
 
         private void dpDia_DateSelected(object sender, DateChangedEventArgs e)

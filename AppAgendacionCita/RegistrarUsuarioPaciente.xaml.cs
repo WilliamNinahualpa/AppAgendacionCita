@@ -18,7 +18,7 @@ namespace AppAgendacionCita
             InitializeComponent();
         }
 
-        private async void btnGuardarUsuarioP_Clicked(object sender, EventArgs e)
+        private void btnGuardarUsuarioP_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -30,9 +30,9 @@ namespace AppAgendacionCita
                 parametros.Add("rol", "PACIENTE");
 
                 cliente.UploadValues("http://192.168.100.66/moviles/RestUsuario.php", "POST", parametros);
-                await DisplayAlert("Alerta", "ingresado corectamente", "ok");
-                //var mensaje = "dato ingresado con éxito";
-                //DependencyService.Get<Mensaje>().LongAlert(mensaje);
+                
+                var mensaje = "dato ingresado con éxito";
+                DependencyService.Get<Mensaje>().LongAlert(mensaje);
 
                 txtUsuario.Text = "";
                 txtClave.Text = "";
@@ -41,8 +41,8 @@ namespace AppAgendacionCita
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+               
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
     }

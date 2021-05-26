@@ -1,11 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppAgendacionCita.VistaUsuarioModificar">
+             x:Class="AppAgendacionCita.VistaUsuarioModificar"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="txtUsuario"></Entry>
-            <Entry x:Name="txtClave"></Entry>
+            <Label x:Name="lblrol"></Label>
+            <Label x:Name="lblusuario"></Label>
+            <Entry x:Name="txtId"></Entry>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Usuario: "></Label>
+                <Entry Grid.Row="0" Grid.Column="1" x:Name="txtUsuario"></Entry>
+                <Label Grid.Row="1" Grid.Column="0" Text="Clave: "></Label>
+                <Entry Grid.Row="1" Grid.Column="1" x:Name="txtClave" IsPassword="True"></Entry>
+                <Label Grid.Row="2" Grid.Column="0" Text="Rol: "></Label>
+                <Entry Grid.Row="2" Grid.Column="1" x:Name="txtRol" IsReadOnly="True"></Entry>
+                <Button Grid.Row="3" Grid.ColumnSpan="2" x:Name="btnModificar" Text="Modificar" Clicked="btnModificar_Clicked"></Button>
+                <Button Grid.Row="4" Grid.ColumnSpan="2" x:Name="btnEliminar" Text="Eliminar" Clicked="btnEliminar_Clicked"></Button>
+                <Button Grid.Row="5" Grid.ColumnSpan="2" x:Name="btnRegresar" Text="Regresar" Clicked="btnRegresar_Clicked"></Button>
+
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

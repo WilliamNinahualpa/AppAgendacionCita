@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.VistaUsuarioIngresar"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lblrol"></Label>
+            <Label x:Name="lblusuario"></Label>
+            <Entry x:Name="txtUsuario" Placeholder="Ingrese usuario"></Entry>
+            <Entry x:Name="txtClave" Placeholder="Ingrese clave" IsPassword="True"></Entry>
+            <Picker x:Name="pickerRol" Title="Ingrese rol"></Picker>
+            <Button x:Name="btnIngresar" Text="Ingresar" Clicked="btnIngresar_Clicked"></Button>
+            <Button x:Name="btnRegresar" Text="Regresar" Clicked="btnRegresar_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

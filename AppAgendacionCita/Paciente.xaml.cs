@@ -21,6 +21,9 @@ namespace AppAgendacionCita
             InitializeComponent();
             lblrol.Text = rol;
             lblusuario.Text = usuario;
+            lblrol.IsVisible = false;
+            lblusuario.IsVisible = false;
+            txtId.IsVisible = false;
             get();
         }
 
@@ -31,7 +34,8 @@ namespace AppAgendacionCita
                 var content = await client.GetStringAsync("http://192.168.100.66/moviles/RestPaciente.php?usuario=" + lblusuario.Text + "&rol=" + lblrol.Text + "");
                 if (content.Equals("false"))
                 {
-                    DisplayAlert("Alerta", "Datos incorrectos", "ok");
+                    var mensaje = "Datos incorrectos";
+                    DependencyService.Get<Mensaje>().LongAlert(mensaje);
                 }
                 else
                 {
@@ -52,8 +56,8 @@ namespace AppAgendacionCita
             }
             catch (Exception ex)
             {
-                DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
@@ -62,7 +66,7 @@ namespace AppAgendacionCita
 
         }
 
-        private async void btnModificarPaciente_Clicked(object sender, EventArgs e)
+        private void btnModificarPaciente_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -73,18 +77,18 @@ namespace AppAgendacionCita
                 cliente.UploadValues("http://192.168.100.66/moviles/RestPaciente.php?pac_id=" + txtId.Text + "&PAC_PRIMER_NOMBRE=" + txtPrimerNombre.Text + "&PAC_SEGUNDO_NOMBRE=" + txtSegundoNombre.Text + "&PAC_PRIMER_APELLIDO=" + txtPrimerApellido.Text + "&PAC_SEGUNDO_APELLIDO=" + txtSegundoApellido.Text + "&PAC_CEDULA=" + txtCedula.Text + "&PAC_CORREO=" + txtCorreo.Text + "&PAC_TELEFONO=" + txtTelefono.Text, "PUT", parametro);
 
 
-                await DisplayAlert("Alerta", "Ingreso Exitoso", "Ok");
-                //var mensaje = "Registro modificado exitosamnte";
-               // DependencyService.Get<Mensaje>().LongAlert(mensaje);
+                
+                var mensaje = "Registro modificado exitosamnte";
+                DependencyService.Get<Mensaje>().LongAlert(mensaje);
 
-                //await Navigation.PushAsync(new MainPage());
+               
 
 
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "Error" );
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.Message);
+               
+                DependencyService.Get<Mensaje>().ShortAlert(ex.Message);
             }
         }
     }

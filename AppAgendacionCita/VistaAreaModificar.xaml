@@ -1,10 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppAgendacionCita.VistaAreaModificar">
+             x:Class="AppAgendacionCita.VistaAreaModificar"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="txtNombre"></Entry>
+            <Label x:Name="lblrol"></Label>
+            <Label x:Name="lblusuario"></Label>
+            <Entry x:Name="txtIdArea" IsReadOnly="True"></Entry>
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+
+
+
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Clinica:"></Label>
+                <Entry Grid.Row="0" Grid.Column="1" x:Name="txtClinica" IsReadOnly="True"></Entry>
+                <Label Grid.Row="1" Grid.Column="0" Text="Nombre:"></Label>
+                <Entry Grid.Row="1" Grid.Column="1" x:Name="txtNombre"></Entry>
+                <Button Grid.Row="2" Grid.ColumnSpan="2" x:Name="btnModificar" Text="Modificar" Clicked="btnModificar_Clicked"></Button>
+                <Button Grid.Row="3" Grid.ColumnSpan="2" x:Name="btnEliminar" Text="Eliminar" Clicked="btnEliminar_Clicked"></Button>
+                <Button Grid.Row="4" Grid.ColumnSpan="2" x:Name="btnRegresar" Text="Regresar" Clicked="btnRegresar_Clicked"></Button>
+                </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

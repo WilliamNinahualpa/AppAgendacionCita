@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppAgendacionCita.VistaCitaUsuarioDetalle"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lblrol"></Label>
+            <Label x:Name="lblusuario"></Label>
+            <Label x:Name="lblidcita"></Label>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Clínica"></Label>
+                <Entry Grid.Row="0" Grid.Column="1" x:Name="txtClinica" IsReadOnly="True"></Entry>
+                <Label Grid.Row="1" Grid.Column="0" Text="Área"></Label>
+                <Entry  Grid.Row="1" Grid.Column="1" x:Name="txtArea" IsReadOnly="True"></Entry>
+                <Label Grid.Row="2" Grid.Column="0" Text="Doctor"></Label>
+                <Entry  Grid.Row="2" Grid.Column="1" x:Name="txtDoctor" IsReadOnly="True"></Entry>
+                <Label Grid.Row="3" Grid.Column="0" Text="Fecha"></Label>
+                <Entry  Grid.Row="3" Grid.Column="1" x:Name="txtfecha" IsReadOnly="True"></Entry>
+                <Label Grid.Row="4" Grid.Column="0" Text="Hora"></Label>
+                <Entry  Grid.Row="4" Grid.Column="1" x:Name="txtHora" IsReadOnly="True"></Entry>
+                <Label Grid.Row="5" Grid.Column="0" Text="Paciente"></Label>
+                <Entry  Grid.Row="5" Grid.Column="1" x:Name="txtPaciente" IsReadOnly="True"></Entry>
+                <Button  Grid.Row="6" Grid.ColumnSpan="2" Text="Abrir ubicacion" x:Name="btnAbrir" Clicked="btnAbrir_Clicked" ></Button>
+                <Button Grid.Row="7" Grid.ColumnSpan="2" Text="Eliminar" x:Name="btnEliminar" Clicked="btnEliminar_Clicked"></Button>
+                <Button Grid.Row="8" Grid.ColumnSpan="2" Text="Regresar" x:Name="btnRegresar" Clicked="btnRegresar_Clicked"></Button>
+                
+            <Entry Text="Unidad de Salud Odofarmed" x:Name="txtNombre1"></Entry>
+            <Entry Text="-0.33994" Keyboard="Numeric" x:Name="txtLatitud"></Entry>
+            <Entry Text="-78.54446" Keyboard="Numeric" x:Name="txtLongitud"></Entry>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

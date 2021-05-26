@@ -17,10 +17,15 @@ namespace AppAgendacionCita
     {
         private readonly HttpClient client = new HttpClient();
         private ObservableCollection<AppAgendacionCita.WS.DatosDoctor> _post;
-        public VistaDoctor()
+        public VistaDoctor(string rol, string usuario)
         {
             InitializeComponent();
             getDoctor();
+
+            lblrol.Text = rol;
+            lblusuario.Text = usuario;
+            lblrol.IsVisible = false;
+            lblusuario.IsVisible = false;
         }
 
         private async void getDoctor()
@@ -34,9 +39,8 @@ namespace AppAgendacionCita
                 MyListView.ItemsSource = _post;
             }
             catch (Exception ex)
-            {
-                await DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+            {                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
@@ -46,7 +50,7 @@ namespace AppAgendacionCita
             var item = Obj.doc_id.ToString();
             int id = Convert.ToInt32(item);
 
-            await Navigation.PushAsync(new VistaDoctorModificar(id));
+            await Navigation.PushAsync(new VistaDoctorModificar(id, lblrol.Text, lblusuario.Text));
         }
     }
 }

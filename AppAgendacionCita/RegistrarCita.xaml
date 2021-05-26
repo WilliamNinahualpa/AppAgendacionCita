@@ -7,16 +7,23 @@
             <Label x:Name="lblUsuario"></Label>
             <Label x:Name="lblRol"></Label>
             <Entry x:Name="txtCodigo"></Entry>
+            <Entry x:Name="txtIdDoctor"></Entry>
+            
             <Entry x:Name="txtNombre"></Entry>
-            <Picker x:Name="pickerClinica" SelectedIndexChanged="pickerClinica_SelectedIndexChanged"></Picker>
-            <Picker x:Name="pickerArea" SelectedIndexChanged="pickerArea_SelectedIndexChanged"></Picker>
-            <Picker x:Name="pickerDoctor" SelectedIndexChanged="pickerDoctor_SelectedIndexChanged"></Picker>
+            <Picker x:Name="pickerClinica" SelectedIndexChanged="pickerClinica_SelectedIndexChanged" Title="Seleccionar Clinica"></Picker>
+            <Picker x:Name="pickerArea" SelectedIndexChanged="pickerArea_SelectedIndexChanged" Title="Seleccionar area"></Picker>
+            <Picker x:Name="pickerDoctor" SelectedIndexChanged="pickerDoctor_SelectedIndexChanged" Title="Selecionar doctor"></Picker>
             
             <DatePicker x:Name="dpDia" DateSelected="dpDia_DateSelected"></DatePicker>
-            <Picker x:Name="pickerHora" ></Picker>
+            <Picker x:Name="pickerHora" Title="seleccionar hora"></Picker>
+            <Button Text="Abrir ubicacion" x:Name="btnAbrir" Clicked="btnAbrir_Clicked" ></Button>
+            <Button Text="Registrar" x:Name="btnHorario" Clicked="btnHorario_Clicked"></Button>
 
-            <Button Text="Boton" x:Name="btnHorario" Clicked="btnHorario_Clicked"></Button>
-            
+
+            <Entry Text="Unidad de Salud Odofarmed" x:Name="txtNombre1"></Entry>
+            <Entry Text="-0.33994" Keyboard="Numeric" x:Name="txtLatitud"></Entry>
+            <Entry Text="-78.54446" Keyboard="Numeric" x:Name="txtLongitud"></Entry>
+           
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

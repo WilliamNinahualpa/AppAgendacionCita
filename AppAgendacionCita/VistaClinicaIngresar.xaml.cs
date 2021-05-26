@@ -18,11 +18,15 @@ namespace AppAgendacionCita
     {
 
         private readonly HttpClient client = new HttpClient();
-        private ObservableCollection<AppAgendacionCita.WS.DatosClinica> _post;
-        public VistaClinicaIngresar()
+        
+        public VistaClinicaIngresar(string rol, string usuario)
         {
             InitializeComponent();
             getPaises();
+            lblrol.Text = rol;
+            lblusuario.Text = usuario;
+            lblrol.IsVisible = false;
+            lblusuario.IsVisible = false;
         }
 
         private async void getPaises()
@@ -31,21 +35,19 @@ namespace AppAgendacionCita
             {
                 String Url = "https://restcountries.eu/rest/v2/all";
                 var content = await client.GetStringAsync(Url);
-                List<AppAgendacionCita.WS.ListarPaises> paises = JsonConvert.DeserializeObject<List<AppAgendacionCita.WS.ListarPaises>>(content);
-                //    _post = new ObservableCollection<WNinahualpaWebServicesConsumo.WS.Datos>(posts);
+                List<AppAgendacionCita.WS.ListarPaises> paises = JsonConvert.DeserializeObject<List<AppAgendacionCita.WS.ListarPaises>>(content);                
                 foreach (var paises1 in paises)
                 {
                     pickerPaises.Items.Add(paises1.name);
                 }
             }
             catch (Exception ex)
-            {
-                DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+            {                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
-        private async void btnRegistrar_Clicked(object sender, EventArgs e)
+        private void btnRegistrar_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -61,24 +63,21 @@ namespace AppAgendacionCita
                 parametros.Add("pais", pickerPaises.SelectedItem.ToString());
 
                 clinica.UploadValues("http://192.168.100.66/moviles/RestClinica.php", "POST", parametros);
-                await DisplayAlert("Alerta", "ingresado corectamente", "ok");
-                //var mensaje = "dato ingresado con éxito";
-                //DependencyService.Get<Mensaje>().LongAlert(mensaje);
-
-
-            
+                
+                var mensaje = "dato ingresado con éxito";
+                DependencyService.Get<Mensaje>().LongAlert(mensaje);
 
             }
             catch (Exception ex)
-            {
-                 await DisplayAlert("Error", ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+            {                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
         private async void btnRegresar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new VistaClinica());
+            await Navigation.PushAsync(new MenuCabeceraPaciente(lblrol.Text, lblusuario.Text, 1));
+
         }
     }
 }

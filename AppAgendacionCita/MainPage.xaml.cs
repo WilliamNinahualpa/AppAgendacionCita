@@ -42,21 +42,22 @@ namespace AppAgendacionCita
                 var seleccionrol = pickerrol.SelectedItem;
                 var content = await client.GetStringAsync("http://192.168.100.66/moviles/RestLogin.php?usuario="+txtUsuario.Text+ "&clave="+txtClave.Text+ "&rol=" + pickerrol.SelectedItem  + "");
                 if (content.Equals("false"))
-                {
-                    DisplayAlert("Alerta", "Datos incorrectos", "ok");
+                {                    
+                    var mensaje = "Datos incorrectos";
+                    DependencyService.Get<Mensaje>().LongAlert(mensaje);
                 }
                 else
                 {                    
                     List<AppAgendacionCita.WS.DatosUsuario> posts = JsonConvert.DeserializeObject<List<AppAgendacionCita.WS.DatosUsuario>>("[" + content + "]");
-                    _post = new ObservableCollection<AppAgendacionCita.WS.DatosUsuario>(posts);
-                    //await Navigation.PushAsync(new Paciente());    
-                    await Navigation.PushAsync(new MenuCabeceraPaciente(seleccionrol.ToString(), txtUsuario.Text));
+                    _post = new ObservableCollection<AppAgendacionCita.WS.DatosUsuario>(posts);                    
+                    await Navigation.PushAsync(new MenuCabeceraPaciente(seleccionrol.ToString(), txtUsuario.Text, 0));
+                    var mensaje = "Bienvenido";
+                    DependencyService.Get<Mensaje>().LongAlert(mensaje);
                 }
             }
             catch (Exception ex)
-            {
-                DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+            {                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 

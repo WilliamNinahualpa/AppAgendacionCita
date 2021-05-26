@@ -17,10 +17,14 @@ namespace AppAgendacionCita
     {
         private readonly HttpClient client = new HttpClient();
         private ObservableCollection<AppAgendacionCita.WS.DatosUsuario> _post;
-        public VistaUsuario()
+        public VistaUsuario(string rol, string usuario)
         {
             InitializeComponent();
             getUsuario();
+            lblrol.Text = rol;
+            lblusuario.Text = usuario;
+            lblrol.IsVisible = false;
+            lblusuario.IsVisible = false;
         }
 
         private async void getUsuario()
@@ -34,9 +38,8 @@ namespace AppAgendacionCita
                 MyListView.ItemsSource = _post;
             }
             catch (Exception ex)
-            {
-                await DisplayAlert("Error", "Error" + ex.Message, "ok");
-                //DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
+            {                
+                DependencyService.Get<Mensaje>().ShortAlert(ex.ToString());
             }
         }
 
@@ -46,7 +49,12 @@ namespace AppAgendacionCita
             var item = Obj.usu_id.ToString();
             int id = Convert.ToInt32(item);
 
-            await Navigation.PushAsync(new VistaUsuarioModificar(id));
+            await Navigation.PushAsync(new VistaUsuarioModificar(id, lblrol.Text, lblusuario.Text));
+        }
+
+        private async void btnIngresar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new VistaUsuarioIngresar(lblrol.Text, lblusuario.Text));
         }
     }
 }
